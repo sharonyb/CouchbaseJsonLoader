@@ -35,9 +35,20 @@ public class KivaViewsQuery {
 	      Stale stale=Stale.OK;
 	      query.setStale(stale);
 //	      query.setGroup(true);
-	      Future<ViewResponse> viewResponse = c.asyncQuery(view, query);
 	      
-	      ViewResponse result = viewResponse.get();
+	      // Async response
+	      Future<ViewResponse> viewResponse = c.asyncQuery(view, query);
+	      System.out.println("Waiting for respons");
+	      if (!viewResponse.isDone())
+	      {
+	    	  Thread.sleep(1000);
+	    	  System.out.print(".");
+	    	  
+	      }
+	      ViewResp§onse result = viewResponse.get();
+	      
+	      // Sync respons
+	      ViewResponse respons = c.query(view, query);
 	      
 	      
 	      c.shutdown(3, TimeUnit.SECONDS);
