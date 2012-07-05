@@ -3,6 +3,7 @@ package com.couchbase.kiva;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import com.couchbase.client.CouchbaseClient;
@@ -28,13 +29,15 @@ public class KivaViewsQuery {
 	      baseURIs.add(local);
 
 	      CouchbaseClient c = new CouchbaseClient(baseURIs, "default", "");
-	      View view = c.getView("dev_lenders", "country_count");
+	      View view = c.getView("dev_loans", "loan_status");
 	    	
 	      Query query = new Query();
 	      Stale stale=Stale.OK;
 	      query.setStale(stale);
-	      query.setGroup(true);
-	      ViewResponse viewResponse = c.query(view, query);
+//	      query.setGroup(true);
+	      Future<ViewResponse> viewResponse = c.asyncQuery(view, query);
+	      
+	      ViewResponse result = viewResponse.get();
 	      
 	      
 	      c.shutdown(3, TimeUnit.SECONDS);

@@ -7,10 +7,14 @@
 
 # Java class files
 *.class
+*.jar
 
 # generated files
 /target/
-
+.classpath
+.project
+.settings
+.gitignore
 # Local configuration file (sdk path, etc)
 local.properties
 build.properties
