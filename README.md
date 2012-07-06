@@ -11,7 +11,15 @@ There are two types of objects it loads: <p>
 
 There are nice insights one can find while building views and quering, for example, how many loans were defaulted, from which country, etc <p>
 
-Map function
+Map function for lender objects - lenders by country
+```JS
+function (doc) {
+  if (doc.type == "lender")
+  emit(doc.country_code, 1);
+}
+```
+
+Map function for loans objects - loan status by country
 ```JS
 function (doc) {
   if (doc.type == "loan")
