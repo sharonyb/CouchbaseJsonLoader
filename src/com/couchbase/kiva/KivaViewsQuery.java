@@ -45,7 +45,7 @@ public class KivaViewsQuery {
 	    	  System.out.print(".");
 	    	  
 	      }
-	      ViewResp§onse result = viewResponse.get();
+	      ViewResponse result = viewResponse.get();
 	      
 	      // Sync respons
 	      ViewResponse respons = c.query(view, query);
