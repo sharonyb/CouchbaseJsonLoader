@@ -129,7 +129,7 @@ public class KivaJsonLoader extends CouchbaseJsonLoader{
 		    				System.out.println("bad entry"+entry);
 		    				continue;
 		    			}
-		    			for (int i=0;i<1;i++)
+		    			for (int i=0;i<this.multiplierValue;i++)
 		    			{
 		    				c.set(entry.id+"_"+i, 0, JSONentry).get();
 		        
