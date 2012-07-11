@@ -131,7 +131,7 @@ public class KivaJsonLoader extends CouchbaseJsonLoader{
 		    			}
 		    			for (int i=0;i<this.multiplierValue;i++)
 		    			{
-		    				c.set(entry.id+"_"+i, 0, JSONentry).get();
+		    				c.set(this.prefixValue+ entry.id+"_"+i, 0, JSONentry).get();
 		        
 		    				counter++;
 		    				totalRecords++;
@@ -158,7 +158,7 @@ public class KivaJsonLoader extends CouchbaseJsonLoader{
 		    			for (int i=0;i<this.multiplierValue;i++)
 		    			{
 		    				 
-		    				c.set(entry.lender_id+"_"+i, 0, JSONentry).get();
+		    				c.set(this.prefixValue+ entry.lender_id+"_"+i, 0, JSONentry).get();
 //				          	System.out.println("lender_id: " + entry.lender_id + " " + c.get(entry.lender_id+"_"+i));
 		        
 		    				counter++;

@@ -15,6 +15,7 @@ public class CouchbaseJsonLoader {
     String bucketValue = "default";
     String lenderPathValue = null;
     String loansPathValue = null;
+    String prefixValue = "";
     int multiplierValue = 1;
 
 	
@@ -33,6 +34,7 @@ public class CouchbaseJsonLoader {
 		Option bucket = new Option( "bucket",  true, "Couchbase bucket name" );
 		Option server = new Option( "server",  true, "Couchbase Server IP address" );
 		Option multiplier = new Option( "multiplier", true, "multiply each record by X" );
+		Option prefix = new Option( "prefix", true, "prefix for each key" );
 		Option debug = new Option( "debug", "true/fals" );
 		Options options = new Options();
 
@@ -42,6 +44,7 @@ public class CouchbaseJsonLoader {
 		options.addOption( bucket );
 		options.addOption( server );
 		options.addOption( multiplier );
+		options.addOption( prefix );
 		options.addOption( debug );
 		
 		
@@ -54,6 +57,7 @@ public class CouchbaseJsonLoader {
         this.lenderPathValue = (line.hasOption("lenders")?line.getOptionValue("lenders"):null);
         this.loansPathValue = (line.hasOption("loans")?line.getOptionValue("loans"):null);
         this.multiplierValue = (line.hasOption("multiplier")? Integer.parseInt(line.getOptionValue("multiplier")):1);
+        this.prefixValue = (line.hasOption("prefix")? line.getOptionValue("prefix"):"");
         if (line.hasOption("help"))
         {
         	HelpFormatter formatter = new HelpFormatter();
@@ -64,6 +68,7 @@ public class CouchbaseJsonLoader {
         System.out.println("lenders="+line.hasOption("lenders")+" value="+line.getOptionValue("lenders"));
         System.out.println("loans="+line.hasOption("loans")+" value="+line.getOptionValue("loans"));
         System.out.println("multiplier="+line.hasOption("multiplier")+" value="+line.getOptionValue("multiplier"));
+        System.out.println("prefix="+line.hasOption("prefix")+" value="+line.getOptionValue("prefix"));
         if (lenderPathValue == null)
         {
             System.out.println( "-lenders is missing" );
